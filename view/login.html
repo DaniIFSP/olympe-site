@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Olympe - Acesso</title>
+</head>
+<body class="pagina-login">
+    <main id="conteudo-login">
+            <img src="../img/login.jpg" alt="">
+        <div id="formulario-login">
+        <h1 style="margin: 10%; text-align: center;">Olympe</h1>
+        <p style="text-align: center; margin: 8%; margin-top:0%">Entre com sua conta do app para acessar a plataforma.</p>
+
+        <form action="https://olympe-api.onrender.com/api/login" method="POST" id="form-login">
+            <label for="email">Email:</label> <br> <br>
+            <input type="email" id="email" name="email" 
+            placeholder="Digite seu e-mail" required> <br> <br>
+            <label for="senha">Senha:</label> <br> <br>
+            <input type="password" id="senha" name="senha" 
+            placeholder="Digite sua senha" required> <br> <br>
+            <button type="submit">ENTRAR</button>
+        </form>
+        </div>
+    </main>
+    <script src="../js/login.js"></script>
+</body>
+</html>
