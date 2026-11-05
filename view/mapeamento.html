@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Olympe - Acesso</title>
+</head>
+<body class="pagina-login">
+    <main id="conteudo-login">
+        <div id="formulario-login">
+        <h1 style="margin: 10%; text-align: center;">Olympe</h1>
+        <p style="text-align: center; margin: 8%; margin-top:0%">Registre o seu caso para ajudar no mapeamento colaborativo.</p>
+
+        <form action="#" method="POST" id="form-denuncias">
+            <label for="nome">Nome:</label> <br> <br>
+            <input type="nome" id="nome" name="nome" 
+            placeholder="Digite seu nome completo." required> <br> <br>
+            <label for="email">Email:</label> <br> <br>
+            <input type="email" id="email" name="email" 
+            placeholder="Digite seu email" required> <br> <br>
+            <label for="local">Local da ocorrência:</label> <br> <br>
+            <input type="text" id="local" name="local"
+            placeholder="Informe o local da ocorrência"> <br> <br>
+            <label for="tipo-denuncia"></label> <br> <br>
+            <textarea name="tipo-denuncia" id="tipo-denuncia"></textarea> <br> <br>
+            <label for="descricao">Descrição:</label> <br> <br>
+            <textarea name="descricao" id="descricao" placeholder="Descreva em poucas palavras o que aconteceu."></textarea> <br> <br>
+            <label for="data-denuncia">Data do ocorrido:</label> <br> <br>
+            <input type="date" name="data-denuncia" id="data-denuncia"></input> <br> <br>
+            <button type="submit">ENVIAR</button> <br> <br>
+
+            <p>**esse processo não substitui uma denúncia oficial. Procure as autoridades locais.</p>
+        </form>
+        </div>
+    </main>
+    <script src="../js/login.js"></script>
+</body>
+</html>

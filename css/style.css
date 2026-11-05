@@ -242,7 +242,7 @@ h6, footer p{
     display: flex;
     justify-content: space-around;
 }
-#formulario-login input {
+#formulario-login input{
     border-radius: 2vw;
     background-color: #fff;
     width: 30vw;
