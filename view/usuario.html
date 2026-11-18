@@ -1,16 +1,58 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
     <title>Área do usuário</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-        <section id="dashboard">
-            <h1 style="display: flex; justify-self: center;">
-            Área do usuário</h1>
-            <a href="mapeamento.html">Ir ao mapeamento</a>
+
+    <header>
+        <h1>Olympe for Safe</h1>
+
+        <nav>
+            <span>Área da usuária</span>
+            <button type="button" id="btn-sair">Sair</button>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Bem-vinda!</h2>
+            <p>O que você deseja fazer?</p>
         </section>
+
+        <section id="opcoes-usuario">
+
+            <article>
+                <h3>Minhas denúncias</h3>
+                <p>Acompanhe suas denúncias e consulte seus status.</p>
+                <a href="minhas-denuncias.html">
+                    Consultar denúncias
+                </a>
+            </article>
+
+            <article>
+                <h3>Nova denúncia</h3>
+                <p>Registre uma situação de risco ou violência.</p>
+                <a href="nova-denuncia.html">
+                    Fazer denúncia
+                </a>
+            </article>
+
+            <article>
+                <h3>Solicitar dispositivo</h3>
+                <p>Solicite seu dispositivo físico de segurança.</p>
+                <a href="solicitar-dispositivo.html">
+                    Solicitar dispositivo
+                </a>
+            </article>
+
+        </section>
+    </main>
+
+    <script src="../js/usuario.js"></script>
 </body>
 </html>
