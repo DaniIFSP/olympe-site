@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Olympe for safe</title>
-=======
->>>>>>> 89ed8bdc94546f1ec348b45fd3565b7c5c8bf651
 </head>
 <body>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const resposta = await fetch("https://olympe-api.onrender.com/api/acordar", {
+                    method: "GET"
+                });
+
+                const dados = await resposta.json();
+
+                console.log("Resposta da API:", dados);
+
+            } catch (erro) {
+                console.error("Erro ao chamar API:", erro);
+            }
+        });
+    </script>
+
     <section id="inicio">
     <div id="cabecalho">
         <h2>OLYMPE <br/>
