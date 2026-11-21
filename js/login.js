@@ -45,7 +45,7 @@ formLogin.addEventListener('submit', async (event) => {
         if (dados.usuario?.tipo === 'administrador') {
             window.location.href = 'admin.html';
         } else {
-            window.location.href = 'usuario.html';
+            window.location.href = '../index.html';
         }
 
     } catch (error) {

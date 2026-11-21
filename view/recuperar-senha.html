@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <title>Olympe - Recuperar senha</title>
+</head>
+
+<body class="pagina-login pagina-recuperacao">
+
+    <main id="conteudo-login">
+
+        <img src="../img/login.jpg" alt="Olympe for Safe">
+
+        <div id="formulario-login">
+
+            <!-- ETAPA 1: SOLICITAR CÓDIGO -->
+            <section id="etapa-email">
+
+                <h1 style="margin: 10%; text-align: center;">
+                    Recuperar senha
+                </h1>
+
+                <p style="text-align: center; margin: 8%; margin-top: 0%;">
+                    Informe seu e-mail para receber o código de recuperação.
+                </p>
+
+                <form id="form-email">
+
+                    <label for="email-recuperacao">E-mail:</label>
+                    <br><br>
+
+                    <input
+                        type="email"
+                        id="email-recuperacao"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+
+                    <br><br>
+
+                    <button type="submit">ENVIAR CÓDIGO</button>
+
+                </form>
+
+                <p id="mensagem-email"></p>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="login.html">Voltar para o login</a>
+                </div>
+
+            </section>
+
+
+            <!-- ETAPA 2: VERIFICAR CÓDIGO -->
+            <section id="etapa-codigo" hidden>
+
+                <h1 style="margin: 10%; text-align: center;">
+                    Verificar código
+                </h1>
+
+                <p style="text-align: center; margin: 8%; margin-top: 0%;">
+                    Enviamos um código de 6 dígitos para seu e-mail.
+                    Digite-o abaixo para continuar.
+                </p>
+
+                <form id="form-codigo">
+
+                    <label for="codigo-recuperacao">
+                        Código de verificação:
+                    </label>
+
+                    <br><br>
+
+                    <input
+                        type="text"
+                        id="codigo-recuperacao"
+                        placeholder="Digite o código"
+                        maxlength="6"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        required
+                    >
+
+                    <br><br>
+
+                    <button type="submit">VERIFICAR CÓDIGO</button>
+
+                </form>
+
+                <p id="mensagem-codigo"></p>
+
+                <div style="text-align: center; margin-top: 20px;">
+
+                    <button type="button" id="voltar-email">
+                        VOLTAR
+                    </button>
+
+                    <br><br>
+
+                    <button type="button" id="reenviar-codigo">
+                        REENVIAR CÓDIGO
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ETAPA 3: NOVA SENHA -->
+            <section id="etapa-senha" hidden>
+
+                <h1 style="margin: 10%; text-align: center;">
+                    Nova senha
+                </h1>
+
+                <p style="text-align: center; margin: 8%; margin-top: 0%;">
+                    Crie uma nova senha para acessar sua conta.
+                </p>
+
+                <form id="form-senha">
+
+                    <label for="nova-senha">Nova senha:</label>
+
+                    <br><br>
+
+                    <input
+                        type="password"
+                        id="nova-senha"
+                        placeholder="Digite sua nova senha"
+                        minlength="8"
+                        required
+                    >
+
+                    <br><br>
+
+                    <label for="confirmar-senha">
+                        Confirmar nova senha:
+                    </label>
+
+                    <br><br>
+
+                    <input
+                        type="password"
+                        id="confirmar-senha"
+                        placeholder="Confirme sua nova senha"
+                        minlength="8"
+                        required
+                    >
+
+                    <br><br>
+
+                    <button type="submit">ALTERAR SENHA</button>
+
+                </form>
+
+                <p id="mensagem-senha"></p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="../js/recuperar-senha.js"></script>
+
+</body>
+</html>

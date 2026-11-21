@@ -6,10 +6,7 @@ function obterToken() {
 
 function obterUsuario() {
     const usuario = localStorage.getItem('olympe_usuario');
-
-    if (!usuario) {
-        return null;
-    }
+    if (!usuario) return null;
 
     try {
         return JSON.parse(usuario);
@@ -21,78 +18,63 @@ function obterUsuario() {
 
 function salvarSessao(token, usuario) {
     localStorage.setItem('olympe_token', token);
-    localStorage.setItem(
-        'olympe_usuario',
-        JSON.stringify(usuario)
-    );
+    localStorage.setItem('olympe_usuario', JSON.stringify(usuario));
 }
 
 function limparSessao() {
-    localStorage.removeItem('olympe_token', token);
+    localStorage.removeItem('olympe_token');
     localStorage.removeItem('olympe_usuario');
 }
 
 function estaLogado() {
-    return !!obterToken() && !!obterUsuario();
+    return Boolean(obterToken() && obterUsuario());
 }
 
-function admin() { 
-    const usuario = obterUsuario(); 
-    
-    return usuario?.tipo === 'administrador'; 
-} 
+function admin() {
+    return obterUsuario()?.tipo === 'administrador';
+}
 
-function exigirLogin() { 
-    if (!estaLogado()) { 
-        window.location.href = 'login.html'; 
-    } 
-} 
+function logout() {
+    const token = obterToken();
+    limparSessao();
 
-function exigirAdministrador() { 
-    exigirLogin(); 
-    
-    if (!admin()) { 
-        window.location.href = 'usuario.html'; 
-    } 
-} 
-
-function logout() { 
-    const token = obterToken(); 
-    
-    limparSessao(); 
-    if (token) { 
-        fetch(`${API_URL}/logout`, { 
+    if (token) {
+        fetch(`${API_URL}/logout`, {
             method: 'POST',
-            headers: { 
-                'Accept': 'application/json', 
-                'Authorization': `Bearer ${token}` 
-            } 
-        }).catch(() => { }); 
-    } 
-    window.location.href = 'login.html'; } 
-    
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }).catch(() => {});
+    }
+
+    window.location.href = window.location.pathname.includes('/view/')
+        ? '../index.html'
+        : 'index.html';
+}
+
 async function apiAutenticada(endpoint, opcoes = {}) {
-    const token = obterToken(); 
-    
-    if (!token) { 
-        window.location.href = 'login.html'; 
-        throw new Error('Usuário não autenticado.'); 
-    } 
-    
-    const headers = { 
-        'Accept': 'application/json', 
-        ...(opcoes.headers || {}), 
-        'Authorization': `Bearer ${token}` 
-    }; 
-    
-    const resposta = await fetch( 
-        `${API_URL}${endpoint}`, 
-        { ...opcoes, headers } ); 
-        
-        if (resposta.status === 401) { 
-            limparSessao(); 
-            window.location.href = 'login.html'; 
-            throw new Error('Sua sessão expirou.'); 
-        } 
-        return resposta; 
+    const token = obterToken();
+    if (!token) {
+        window.location.href = window.location.pathname.includes('/view/')
+            ? 'login.html'
+            : 'view/login.html';
+        throw new Error('Usuário não autenticado.');
+    }
+
+    const headers = {
+        'Accept': 'application/json',
+        ...(opcoes.headers || {}),
+        'Authorization': `Bearer ${token}`
+    };
+
+    const resposta = await fetch(`${API_URL}${endpoint}`, { ...opcoes, headers });
+    if (resposta.status === 401) {
+        limparSessao();
+        window.location.href = window.location.pathname.includes('/view/')
+            ? 'login.html'
+            : 'view/login.html';
+        throw new Error('Sua sessão expirou.');
+    }
+    return resposta;
 }

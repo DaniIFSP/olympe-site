@@ -7,24 +7,6 @@
     <title>Olympe for safe</title>
 </head>
 <body>
-
-    <script>
-        window.addEventListener("DOMContentLoaded", async () => {
-            try {
-                const resposta = await fetch("https://olympe-api.onrender.com/api/acordar", {
-                    method: "GET"
-                });
-
-                const dados = await resposta.json();
-
-                console.log("Resposta da API:", dados);
-
-            } catch (erro) {
-                console.error("Erro ao chamar API:", erro);
-            }
-        });
-    </script>
-
     <section id="inicio">
     <div id="cabecalho">
         <h2>OLYMPE <br/>
@@ -112,7 +94,7 @@
              <p style="padding: 3%; width: 75%; justify-self: center; text-align: center;">
                <strong>E mais:</strong> botão de emergência em TODAS as telas que te leva a uma ligação segura com o 180.</p>
             
-            <a href="#" style="color: #ffff;
+            <a href="view/mapeamento.html" style="color: #ffff;
                 width: 13vw; height: 6vh;
                 background-color: #dd1155;
                 display: flex; align-items: center;
@@ -220,7 +202,7 @@
             <p>O <strong>chaveiro Olympe</strong> é o nosso botão 
             de emergência escondido, com apenas um clique você se 
             comunica diretamente com o 180 e sua ocorrência é registrada.</p>
-            <a href="#" style="color: #ffff;
+            <a href="view/encomenda.html" style="color: #ffff;
             width: 11vw; height: 6vh;
             background-color: #dd1155;
             display: flex; align-items: center;
