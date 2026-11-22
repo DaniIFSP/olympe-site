@@ -1551,3 +1551,404 @@ body.pagina-conta {
     }
 
 }
+
+
+
+/* ==========================================
+   PÁGINA DE GERENCIAMENTO DE FUNCIONÁRIOS
+========================================== */
+
+.pagina-equipe {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.pagina-equipe h1 {
+    color: #5b477e;
+    margin-bottom: 10px;
+}
+
+.pagina-equipe .descricao-equipe {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.painel-equipe {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+    margin-bottom: 30px;
+}
+
+.painel-equipe h2 {
+    color: #5b477e;
+    margin-top: 0;
+    margin-bottom: 22px;
+}
+
+
+/* PESQUISA */
+
+.barra-equipe {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.barra-equipe input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+
+/* BOTÕES */
+
+.botao-equipe,
+.botao-cancelar {
+    border: none;
+    background: #5b477e;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.botao-equipe:hover {
+    background: #493763;
+}
+
+.botao-equipe:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.botao-cancelar {
+    background: #777;
+}
+
+.botao-cancelar:hover {
+    background: #5c5c5c;
+}
+
+
+/* LISTA */
+
+#lista-equipe {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.membro-equipe {
+    border: 1px solid #e2dce9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.membro-equipe summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px;
+}
+
+.membro-equipe summary::-webkit-details-marker {
+    display: none;
+}
+
+.cabecalho-membro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.nome-membro {
+    font-size: 17px;
+    font-weight: bold;
+    color: #44345f;
+}
+
+.status-membro {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-ativo {
+    color: #27633d;
+    background: #e2f3e7;
+}
+
+.status-inativo {
+    color: #8b3030;
+    background: #f8e1e1;
+}
+
+.informacoes-resumo {
+    color: #777;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.detalhes-membro {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #faf9fc;
+}
+
+.detalhes-membro p {
+    margin: 8px 0;
+    overflow-wrap: anywhere;
+}
+
+
+/* AÇÕES DOS MEMBROS */
+
+.acoes-membro {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.acoes-membro button {
+    padding: 9px 14px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.botao-editar {
+    background: #e9e2f2;
+    color: #5b477e;
+}
+
+.botao-editar:hover {
+    background: #d9cce9;
+}
+
+.botao-desativar {
+    background: #b94b4b;
+    color: white;
+}
+
+.botao-desativar:hover {
+    background: #963737;
+}
+
+.botao-reativar {
+    background: #43865b;
+    color: white;
+}
+
+.botao-reativar:hover {
+    background: #326944;
+}
+
+
+/* MENSAGENS */
+
+.contador-equipe {
+    margin: 15px 0;
+    color: #777;
+    font-size: 14px;
+}
+
+#mensagem-lista,
+#mensagem-cadastro,
+#mensagem-edicao {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.mensagem-sucesso {
+    color: #267542;
+}
+
+.mensagem-erro {
+    color: #b83232;
+}
+
+
+/* FORMULÁRIOS */
+
+.form-equipe,
+.form-edicao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.campo-equipe {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-equipe label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #51436c;
+}
+
+.campo-equipe input,
+.campo-equipe select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+}
+
+.campo-equipe input:focus,
+.campo-equipe select:focus {
+    outline: none;
+    border-color: #7c65a5;
+    box-shadow: 0 0 0 2px rgba(91, 71, 126, 0.12);
+}
+
+#form-equipe > .botao-equipe {
+    margin-top: 20px;
+}
+
+
+/* ==========================================
+   MODAL DE EDIÇÃO
+========================================== */
+
+.modal-edicao {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-edicao.aberto {
+    display: flex;
+}
+
+.conteudo-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    animation: aparecerModalEquipe 0.2s ease;
+}
+
+@keyframes aparecerModalEquipe {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cabecalho-modal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.cabecalho-modal h2 {
+    margin: 0;
+    color: #5b477e;
+}
+
+.botao-fechar-modal {
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    color: #777;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.botao-fechar-modal:hover {
+    color: #333;
+}
+
+.botoes-modal {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.botoes-modal button {
+    flex: 1;
+    min-width: 120px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 650px) {
+
+    .pagina-equipe {
+        margin: 15px auto;
+        padding: 12px;
+    }
+
+    .painel-equipe {
+        padding: 20px;
+    }
+
+    .form-equipe,
+    .form-edicao {
+        grid-template-columns: 1fr;
+    }
+
+    .conteudo-modal {
+        padding: 22px;
+    }
+
+    .cabecalho-membro {
+        align-items: flex-start;
+    }
+
+    .acoes-membro {
+        flex-direction: column;
+    }
+
+    .acoes-membro button {
+        width: 100%;
+    }
+
+    .botoes-modal {
+        flex-direction: column;
+    }
+
+}

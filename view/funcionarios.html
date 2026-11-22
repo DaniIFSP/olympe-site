@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerenciar equipe | Olympe for Safe</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <main class="pagina-equipe">
+
+        <h1>Gerenciamento da equipe</h1>
+
+        <p class="descricao-equipe">
+            Cadastre, consulte, edite e gerencie os membros da equipe.
+        </p>
+
+        <!-- LISTA DE MEMBROS -->
+        <section class="painel-equipe">
+
+            <h2>Membros cadastrados</h2>
+
+            <div class="barra-equipe">
+                <input
+                    type="text"
+                    id="pesquisa-equipe"
+                    placeholder="Pesquisar por nome, e-mail ou perfil..."
+                >
+
+                <button
+                    type="button"
+                    id="botao-atualizar"
+                    class="botao-equipe"
+                >
+                    Atualizar lista
+                </button>
+            </div>
+
+            <p id="contador-equipe" class="contador-equipe"></p>
+
+            <div id="lista-equipe">
+                Carregando membros...
+            </div>
+
+            <p id="mensagem-lista"></p>
+
+        </section>
+
+
+        <!-- CADASTRO -->
+        <section class="painel-equipe">
+
+            <h2>Cadastrar novo membro</h2>
+
+            <form id="form-equipe">
+
+                <div class="form-equipe">
+
+                    <div class="campo-equipe">
+                        <label for="nome-equipe">Nome completo</label>
+                        <input
+                            type="text"
+                            id="nome-equipe"
+                            maxlength="90"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-equipe">
+                        <label for="idade-equipe">Idade</label>
+                        <input
+                            type="number"
+                            id="idade-equipe"
+                            min="0"
+                            max="130"
+                        >
+                    </div>
+
+                    <div class="campo-equipe">
+                        <label for="email-equipe">E-mail</label>
+                        <input
+                            type="email"
+                            id="email-equipe"
+                            maxlength="90"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-equipe">
+                        <label for="telefone-equipe">Telefone</label>
+                        <input
+                            type="tel"
+                            id="telefone-equipe"
+                            maxlength="20"
+                            placeholder="+5511999999999"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-equipe">
+                        <label for="senha-equipe">Senha inicial</label>
+                        <input
+                            type="password"
+                            id="senha-equipe"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-equipe">
+                        <label for="tipo-equipe">Perfil</label>
+                        <select id="tipo-equipe" required>
+                            <option value="">Selecione</option>
+                            <option value="funcionario">Funcionário</option>
+                            <option value="administrador">Administrador</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="botao-cadastrar"
+                    class="botao-equipe"
+                >
+                    Cadastrar membro
+                </button>
+
+            </form>
+
+            <p id="mensagem-cadastro"></p>
+
+        </section>
+
+
+        <!-- MODAL DE EDIÇÃO -->
+        <div id="modal-edicao" class="modal-edicao">
+
+            <div class="conteudo-modal">
+
+                <div class="cabecalho-modal">
+
+                    <h2>Editar membro</h2>
+
+                    <button
+                        type="button"
+                        id="fechar-modal"
+                        class="botao-fechar-modal"
+                    >
+                        &times;
+                    </button>
+
+                </div>
+
+                <form id="form-edicao">
+
+                    <input type="hidden" id="editar-cod">
+
+                    <div class="form-edicao">
+
+                        <div class="campo-equipe">
+                            <label for="editar-nome">Nome completo</label>
+                            <input
+                                type="text"
+                                id="editar-nome"
+                                maxlength="90"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo-equipe">
+                            <label for="editar-idade">Idade</label>
+                            <input
+                                type="number"
+                                id="editar-idade"
+                                min="0"
+                                max="130"
+                            >
+                        </div>
+
+                        <div class="campo-equipe">
+                            <label for="editar-email">E-mail</label>
+                            <input
+                                type="email"
+                                id="editar-email"
+                                maxlength="90"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo-equipe">
+                            <label for="editar-telefone">Telefone</label>
+                            <input
+                                type="tel"
+                                id="editar-telefone"
+                                maxlength="20"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo-equipe">
+                            <label for="editar-tipo">Perfil</label>
+                            <select id="editar-tipo" required>
+                                <option value="funcionario">Funcionário</option>
+                                <option value="administrador">Administrador</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <p id="mensagem-edicao"></p>
+
+                    <div class="botoes-modal">
+
+                        <button
+                            type="submit"
+                            id="botao-salvar-edicao"
+                            class="botao-equipe"
+                        >
+                            Salvar alterações
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelar-edicao"
+                            class="botao-cancelar"
+                        >
+                            Cancelar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- AUTENTICAÇÃO -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/menu-usuario.js"></script>
+
+    <!-- FUNCIONALIDADES DA PÁGINA -->
+    <script src="../js/funcionarios.js"></script>
+
+</body>
+</html>

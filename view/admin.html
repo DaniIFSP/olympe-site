@@ -1,37 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../css/style.css">
-    <title>Área de gerenciamento</title>
+
+    <title>Área de gerenciamento | Olympe for Safe</title>
 </head>
+
 <body>
 
-        <section id="inicio">
+    <section id="inicio">
+
         <div id="cabecalho">
+
             <h2>OLYMPE <br/>
-                FOR SAFE</h2>
-            <nav id="menu"> 
+                FOR SAFE
+            </h2>
+
+            <nav id="menu">
                 <a href="../index.html" class="link-cabecalho">HOME</a>
-                <a href="#aplicativo" class="link-cabecalho">APLICATIVO</a>
-                <a href="#dispositivo" class="link-cabecalho">DISPOSITIVO</a>
-                <a href="#" class="link-cabecalho">MAPEAMENTO</a>
-                <a href="#contato" class="link-cabecalho">CONTATO</a>
+                <a href="../index.html#aplicativo" class="link-cabecalho">APLICATIVO</a>
+                <a href="../index.html#dispositivo" class="link-cabecalho">DISPOSITIVO</a>
+                <a href="mapeamento.html" class="link-cabecalho">MAPEAMENTO</a>
+                <a href="../index.html#contato" class="link-cabecalho">CONTATO</a>
             </nav>
+
             <div id="acesso">
-                <a href="view/login.html" style="color: #ffff" class="link-cabecalho">ADMIN</a>
-                <img src="../img/sol_detalhe.png" alt="detalhe">
+                <a href="#" id="link-admin" class="link-cabecalho">ADMIN</a>
+                <img src="../img/sol_detalhe.png" alt="Detalhe decorativo">
             </div>
+
         </div>
 
         <section id="dashboard">
+
             <h1 style="display: flex; justify-self: center;">
-            Área do Administrador</h1>
-            <a href="instituicoes.html">Gerenciar instituições</a>
+                Área do Administrador
+            </h1>
+
+            <div class="opcoes-admin">
+
+                <a href="instituicoes.html" class="botao-admin">
+                    Gerenciar instituições
+                </a>
+
+                <a href="denuncias-admin.html" class="botao-admin">
+                    Gerenciar relatos
+                </a>
+
+                <a href="funcionarios.html" class="botao-admin">
+                    Gerenciar funcionários
+                </a>
+
+            </div>
+
         </section>
 
-        <script src="js/auth.js"></script>
-        <script src="js/menu-usuario.js"></script>
+    </section>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/menu-usuario.js"></script>
+
+    <script>
+        // Protege esta página no frontend
+        if (!estaLogado()) {
+            window.location.href = "login.html";
+        } else if (!admin()) {
+            alert("Acesso permitido somente para administradores.");
+            window.location.href = "../index.html";
+        }
+    </script>
+
 </body>
 </html>
