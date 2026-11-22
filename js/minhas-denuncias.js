@@ -1,17 +1,12 @@
-
 const API_URL = 'https://olympe-api.onrender.com/api';
 
-const token = localStorage.getItem('olympe_token');
+const formulario = document.getElementById('form-consultar-denuncia');
+const campoProtocolo = document.getElementById('protocolo');
+const campoCodigo = document.getElementById('codigo_acesso');
+const botaoConsultar = document.getElementById('btn-consultar-denuncia');
+const resultadoConsulta = document.getElementById('resultado-consulta');
 
-const listaDenuncias = document.getElementById('lista-denuncias');
-const quantidadeDenuncias = document.getElementById('quantidade-denuncias');
-
-// Verifica se existe uma sessão.
-if (!token) {
-    window.location.href = 'login.html';
-}
-
-// Define a classe visual de cada status.
+// Classes visuais dos status
 function obterClasseStatus(status) {
     switch (status) {
         case 'Pendente':
@@ -31,7 +26,7 @@ function obterClasseStatus(status) {
     }
 }
 
-// Cria um elemento de texto.
+// Cria informações com segurança
 function criarInformacao(rotulo, valor) {
     const paragrafo = document.createElement('p');
     paragrafo.classList.add('informacao-denuncia');
@@ -40,6 +35,7 @@ function criarInformacao(rotulo, valor) {
     destaque.textContent = rotulo;
 
     paragrafo.appendChild(destaque);
+
     paragrafo.appendChild(
         document.createTextNode(` ${valor || 'Não informado'}`)
     );
@@ -47,16 +43,39 @@ function criarInformacao(rotulo, valor) {
     return paragrafo;
 }
 
-// Cria o cartão de cada denúncia.
-function criarCartaoDenuncia(denuncia) {
+// Exibe mensagens na área de resultado
+function mostrarMensagem(texto, tipo = 'erro') {
+    resultadoConsulta.innerHTML = '';
+    resultadoConsulta.style.display = 'block';
+
+    const mensagem = document.createElement('p');
+    mensagem.textContent = texto;
+
+    mensagem.classList.add('mensagem-vazia');
+
+    if (tipo === 'erro') {
+        mensagem.style.color = '#a32020';
+    } else {
+        mensagem.style.color = '#24558a';
+    }
+
+    resultadoConsulta.appendChild(mensagem);
+}
+
+// Exibe os dados do relato consultado
+function mostrarDenuncia(denuncia) {
+    resultadoConsulta.innerHTML = '';
+    resultadoConsulta.style.display = 'block';
+
     const cartao = document.createElement('article');
     cartao.classList.add('cartao-denuncia');
 
+    // Cabeçalho
     const cabecalho = document.createElement('div');
     cabecalho.classList.add('cabecalho-cartao-denuncia');
 
     const titulo = document.createElement('h3');
-    titulo.textContent = `Denúncia #${denuncia.cod}`;
+    titulo.textContent = 'Relato encontrado';
 
     const status = document.createElement('span');
     status.classList.add('status-denuncia');
@@ -74,101 +93,126 @@ function criarCartaoDenuncia(denuncia) {
 
     cartao.appendChild(cabecalho);
 
+    // Informações
     cartao.appendChild(
-        criarInformacao('Tipo:', denuncia.tipo)
+        criarInformacao('Protocolo:', denuncia.protocolo)
     );
 
     cartao.appendChild(
-        criarInformacao('Data:', denuncia.data_denuncia)
+        criarInformacao('Tipo de relato:', denuncia.tipo)
     );
 
     cartao.appendChild(
         criarInformacao('Descrição:', denuncia.descricao)
     );
 
-    return cartao;
+    cartao.appendChild(
+        criarInformacao('Local:', denuncia.local)
+    );
+
+    cartao.appendChild(
+        criarInformacao('Data do ocorrido:', denuncia.data_ocorrido)
+    );
+
+    cartao.appendChild(
+        criarInformacao('Data do registro:', denuncia.data_denuncia)
+    );
+
+    // Aviso explicativo
+    const aviso = document.createElement('p');
+    aviso.classList.add('mensagem-vazia');
+
+    aviso.textContent =
+        'O status do relato poderá ser atualizado após a avaliação da equipe Olympe for Safe.';
+
+    cartao.appendChild(aviso);
+
+    resultadoConsulta.appendChild(cartao);
 }
 
-// Busca as denúncias da usuária autenticada.
-async function listarMinhasDenuncias() {
+// Consulta o relato na API
+async function consultarDenuncia(protocolo, codigoAcesso) {
     try {
+        botaoConsultar.disabled = true;
+        botaoConsultar.textContent = 'CONSULTANDO...';
+
+        mostrarMensagem(
+            'Estamos buscando seu relato. Aguarde...',
+            'info'
+        );
+
         const resposta = await fetch(
-            `${API_URL}/minhas-denuncias`,
+            `${API_URL}/consultar-denuncia`,
             {
-                method: 'GET',
+                method: 'POST',
+
                 headers: {
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    protocolo: protocolo,
+                    codigo_acesso: codigoAcesso
+                })
             }
         );
 
         const dados = await resposta.json();
 
-        if (resposta.status === 401) {
-            localStorage.removeItem('olympe_token');
-            localStorage.removeItem('olympe_usuario');
-
-            window.location.href = 'login.html';
-            return;
-        }
-
         if (!resposta.ok) {
             throw new Error(
                 dados.mensagem ||
                 dados.message ||
-                'Não foi possível carregar suas denúncias.'
+                'Protocolo ou código de acesso inválido.'
             );
         }
 
-        const denuncias = dados.denuncias || [];
-
-        listaDenuncias.innerHTML = '';
-
-        quantidadeDenuncias.textContent =
-            `${denuncias.length} denúncia(s)`;
-
-        if (denuncias.length === 0) {
-            const mensagem = document.createElement('p');
-
-            mensagem.classList.add('mensagem-vazia');
-
-            mensagem.textContent =
-                'Você ainda não possui denúncias cadastradas.';
-
-            listaDenuncias.appendChild(mensagem);
-
-            return;
+        if (!dados.denuncia) {
+            throw new Error(
+                'Não encontramos os dados desse relato.'
+            );
         }
 
-        denuncias.forEach((denuncia) => {
-            const cartao = criarCartaoDenuncia(denuncia);
+        mostrarDenuncia(dados.denuncia);
 
-            listaDenuncias.appendChild(cartao);
-        });
+    } catch (erro) {
+        console.error('Erro na consulta:', erro);
 
-    } catch (error) {
-        console.error(error);
-
-        listaDenuncias.innerHTML = '';
-
-        quantidadeDenuncias.textContent = '';
-
-        alert(
-            error.message ||
-            'Não foi possível conectar à API.'
+        mostrarMensagem(
+            erro.message ||
+            'Não foi possível consultar seu relato. Tente novamente.'
         );
 
-        const mensagem = document.createElement('p');
-
-        mensagem.classList.add('mensagem-vazia');
-        mensagem.textContent =
-            'Não foi possível carregar suas denúncias. Tente novamente.';
-
-        listaDenuncias.appendChild(mensagem);
+    } finally {
+        botaoConsultar.disabled = false;
+        botaoConsultar.textContent = 'CONSULTAR RELATO';
     }
 }
 
-if (token) {
-    listarMinhasDenuncias();
-}
+// Evento do formulário
+formulario.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    const protocolo = campoProtocolo.value.trim().toUpperCase();
+    const codigoAcesso = campoCodigo.value.trim().toUpperCase();
+
+    if (!protocolo || !codigoAcesso) {
+        mostrarMensagem(
+            'Preencha o protocolo e o código de acesso.'
+        );
+
+        return;
+    }
+
+    consultarDenuncia(protocolo, codigoAcesso);
+});
+
+// Deixa protocolo e código em maiúsculas ao digitar
+campoProtocolo.addEventListener('input', function () {
+    this.value = this.value.toUpperCase();
+});
+
+campoCodigo.addEventListener('input', function () {
+    this.value = this.value.toUpperCase();
+});

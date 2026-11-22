@@ -1,39 +1,213 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../css/style.css">
-    <title>Olympe - Acesso</title>
+
+    <title>Olympe - Mapeamento Colaborativo</title>
 </head>
-<body class="pagina-login">
-    <main id="conteudo-login">
-        <div id="formulario-login">
-        <h1 style="margin: 10%; text-align: center;">Olympe</h1>
-        <p style="text-align: center; margin: 8%; margin-top:0%">Registre o seu caso para ajudar no mapeamento colaborativo.</p>
 
-        <form action="#" method="POST" id="form-denuncias">
-            <label for="nome">Nome:</label> <br> <br>
-            <input type="nome" id="nome" name="nome" 
-            placeholder="Digite seu nome completo." required> <br> <br>
-            <label for="email">Email:</label> <br> <br>
-            <input type="email" id="email" name="email" 
-            placeholder="Digite seu email" required> <br> <br>
-            <label for="local">Local da ocorrência:</label> <br> <br>
-            <input type="text" id="local" name="local"
-            placeholder="Informe o local da ocorrência"> <br> <br>
-            <label for="tipo-denuncia"></label> <br> <br>
-            <textarea name="tipo-denuncia" id="tipo-denuncia"></textarea> <br> <br>
-            <label for="descricao">Descrição:</label> <br> <br>
-            <textarea name="descricao" id="descricao" placeholder="Descreva em poucas palavras o que aconteceu."></textarea> <br> <br>
-            <label for="data-denuncia">Data do ocorrido:</label> <br> <br>
-            <input type="date" name="data-denuncia" id="data-denuncia"></input> <br> <br>
-            <button type="submit">ENVIAR</button> <br> <br>
+<body class="pagina-mapeamento">
 
-            <p>**esse processo não substitui uma denúncia oficial. Procure as autoridades locais.</p>
-        </form>
+    <main id="conteudo-mapeamento">
+
+        <header class="cabecalho-mapeamento">
+            <h1>Olympe for Safe</h1>
+            <h2>Mapeamento colaborativo</h2>
+
+            <p>
+                Registre um local que merece atenção para ajudar
+                na construção de um mapeamento urbano mais seguro.
+            </p>
+        </header>
+
+        <div class="aviso-anonimato">
+            <strong>⚠️ Aviso importante</strong>
+
+            <p>
+                Este formulário é anônimo e destinado exclusivamente
+                ao mapeamento colaborativo do Olympe for Safe.
+                Ele não substitui uma ocorrência oficial ou denúncia
+                às autoridades competentes.
+            </p>
+
+            <p>
+                Os relatos passam por uma avaliação que pode levar
+                de 10 a 15 dias e não necessariamente serão adicionados
+                ao aplicativo. A inclusão de novos pontos depende
+                da análise e da confiabilidade das informações recebidas.
+            </p>
         </div>
+
+        <form id="form-denuncia">
+
+            <div class="folhas-mapeamento">
+
+                <!-- FOLHA ESQUERDA -->
+                <section class="folha formulario-relato">
+
+                    <h3>Sobre o relato</h3>
+
+                    <label for="tipo">
+                        Tipo de relato
+                    </label>
+
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Assédio">Assédio</option>
+                        <option value="Violência">Violência</option>
+                        <option value="Iluminação inadequada">
+                            Iluminação inadequada
+                        </option>
+                        <option value="Calçada ou via inadequada">
+                            Calçada ou via inadequada
+                        </option>
+                        <option value="Transporte público">
+                            Transporte público
+                        </option>
+                        <option value="Roubo">
+                            Roubo / Assalto
+                        </option>
+                        <option value="Local de risco">
+                            Local de risco
+                        </option>
+                        <option value="Outro">Outro</option>
+                    </select>
+
+                    <label for="descricao">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        maxlength="300"
+                        placeholder="Descreva brevemente a situação observada."
+                    ></textarea>
+
+                    <label for="data_ocorrido">
+                        Data do ocorrido
+                    </label>
+
+                    <input
+                        type="date"
+                        id="data_ocorrido"
+                        name="data_ocorrido"
+                    >
+
+                    <div class="orientacao-relato">
+                        <p>
+                            Não inclua nomes, documentos, telefones
+                            ou outras informações que identifiquem
+                            pessoas.
+                        </p>
+                    </div>
+
+                    <div class="campo-formulario">
+                        <label for="email">E-mail para recebimento do protocolo *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Digite seu e-mail"
+                            required
+                        >
+
+                        <small class="aviso-privacidade">
+                            O e-mail será utilizado exclusivamente para enviar o protocolo
+                            e o código de acesso para consulta do relato. Ele não será
+                            incluído na denúncia nem armazenado no banco de dados de denúncias.
+                        </small>
+                    </div>
+
+                </section>
+
+
+                <!-- FOLHA DIREITA -->
+                <section class="folha folha-localizacao">
+
+                    <h3>Localização</h3>
+
+                    <label for="local">
+                        Endereço ou referência
+                    </label>
+
+                    <input
+                        type="text"
+                        id="local"
+                        name="local"
+                        placeholder="Endereço ou referência do local"
+                    >
+
+                    <button
+                        type="button"
+                        id="btn-buscar-local"
+                    >
+                        BUSCAR ENDEREÇO
+                    </button>
+
+                    <p class="instrucao-mapa">
+                        Pesquise um endereço ou clique no mapa para marcar
+                        o local. Você também pode arrastar o marcador para ajustá-lo.
+                    </p>
+
+                    <div id="mapa"></div>
+
+                    <button
+                        type="button"
+                        id="btn-localizacao"
+                    >
+                        Usar minha localização
+                    </button>
+
+                    <p id="status-localizacao">
+                        Nenhum local selecionado.
+                    </p>
+
+                    <input
+                        type="hidden"
+                        id="latitude"
+                        name="latitude"
+                    >
+
+                    <input
+                        type="hidden"
+                        id="longitude"
+                        name="longitude"
+                    >
+
+                    <button
+                        type="submit"
+                        id="btn-enviar-denuncia"
+                    >
+                        ENVIAR RELATO
+                    </button>
+
+                </section>
+
+            </div>
+
+        </form>
+
+        <p id="mensagem-retorno"></p>
+
+        <a href="../index.html" class="link-voltar">
+            Voltar à área inicial
+        </a>
+
     </main>
-    <script src="../js/login.js"></script>
+
+    <script src="../js/mapeamento.js"></script>
+
+    <script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiodnM2xwNrI11-_S8MmdXDcTwgDjW7P0&callback=initMap">
+    </script>
+
 </body>
 </html>

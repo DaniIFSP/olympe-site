@@ -1254,3 +1254,300 @@ body.pagina-conta {
         flex-direction: column;
     }
 }
+
+
+
+/* ===================================== */
+/* MAPEAMENTO COLABORATIVO - OLYMPE     */
+/* ===================================== */
+
+.pagina-mapeamento {
+    margin: 0;
+    padding: 35px 4%;
+    background: #ffffff;
+    color: #320e3b;
+    font-family: Arial, sans-serif;
+}
+
+#conteudo-mapeamento {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+/* Cabeçalho */
+
+.cabecalho-mapeamento {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.cabecalho-mapeamento h1 {
+    font-size: 2.6rem;
+    color: #320e3b;
+    margin: 0 0 8px;
+}
+
+.cabecalho-mapeamento h2 {
+    font-size: 1.5rem;
+    color: #4d065f;
+    margin: 0 0 15px;
+}
+
+.cabecalho-mapeamento p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 750px;
+    margin: auto;
+}
+
+/* Aviso */
+
+.aviso-anonimato {
+    padding: 18px 22px;
+    margin-bottom: 25px;
+    border: 1px solid #d8c7df;
+    border-left: 4px solid #4d065f;
+    border-radius: 10px;
+    background-color: #ffffff;
+    line-height: 1.6;
+}
+
+.aviso-anonimato strong {
+    display: block;
+    color: #4d065f;
+    margin-bottom: 8px;
+}
+
+.aviso-anonimato p {
+    margin: 7px 0;
+}
+
+/* Duas folhas */
+
+.folhas-mapeamento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+.folha {
+    background-color: #ffffff;
+    border: 1px solid #d8c7df;
+    border-radius: 12px;
+    padding: 28px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.folha h3 {
+    font-size: 1.35rem;
+    color: #4d065f;
+    margin: 0 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e6dce9;
+}
+
+/* Campos */
+
+#form-denuncia label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin: 18px 0 8px;
+}
+
+#form-denuncia input[type="text"],
+#form-denuncia input[type="date"],
+#form-denuncia select,
+#form-denuncia textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #c9b9d0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #320e3b;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+#form-denuncia textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+#form-denuncia input:focus,
+#form-denuncia select:focus,
+#form-denuncia textarea:focus {
+    outline: none;
+    border-color: #4d065f;
+    box-shadow: 0 0 0 2px rgba(77, 6, 95, 0.1);
+}
+
+.aviso-privacidade {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* Orientação */
+
+.orientacao-relato {
+    border: 1px solid #e6dce9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 20px;
+    color: #62516a;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.orientacao-relato p {
+    margin: 0;
+}
+
+/* Mapa */
+
+.instrucao-mapa {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 10px 0 15px;
+}
+
+#mapa {
+    width: 100%;
+    height: 420px;
+    border: 1px solid #c9b9d0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Botões */
+
+#btn-localizacao,
+#btn-enviar-denuncia {
+    width: 100%;
+    padding: 13px 16px;
+    margin-top: 18px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#btn-localizacao {
+    background-color: #ffffff;
+    color: #4d065f;
+    border: 1px solid #4d065f;
+}
+
+#btn-localizacao:hover {
+    background-color: #f8f4fa;
+}
+
+#btn-enviar-denuncia {
+    background-color: #4d065f;
+    color: #ffffff;
+    border: 1px solid #4d065f;
+    margin-top: 25px;
+}
+
+#btn-enviar-denuncia:hover {
+    background-color: #320e3b;
+}
+
+#btn-localizacao:disabled,
+#btn-enviar-denuncia:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Status */
+
+#status-localizacao {
+    padding: 12px;
+    margin-top: 12px;
+    background-color: #ffffff;
+    border: 1px solid #e6dce9;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Mensagem de retorno */
+
+#mensagem-retorno {
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Voltar */
+
+.link-voltar {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    color: #4d065f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-voltar:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+
+@media (max-width: 850px) {
+
+    .folhas-mapeamento {
+        grid-template-columns: 1fr;
+    }
+
+    .folha-localizacao {
+        order: 2;
+    }
+
+    .formulario-relato {
+        order: 1;
+    }
+
+    #mapa {
+        height: 350px;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .pagina-mapeamento {
+        padding: 20px 15px;
+    }
+
+    .cabecalho-mapeamento h1 {
+        font-size: 2rem;
+    }
+
+    .cabecalho-mapeamento h2 {
+        font-size: 1.25rem;
+    }
+
+    .folha {
+        padding: 20px;
+    }
+
+    .aviso-anonimato {
+        padding: 15px;
+    }
+
+    #mapa {
+        height: 300px;
+    }
+
+}

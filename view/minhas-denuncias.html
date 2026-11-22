@@ -1,49 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Minhas denúncias | Olympe for Safe</title>
+    <title>Consultar relato | Olympe for Safe</title>
 
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body class="pagina-denuncias">
 
     <header class="cabecalho-denuncias">
-        <a href="usuario.html" class="logo-denuncias">
+        <a href="../index.html" class="logo-denuncias">
             Olympe for Safe
         </a>
 
         <nav>
-            <a href="usuario.html">Voltar à área inicial</a>
+            <a href="../index.html">Voltar à área inicial</a>
         </nav>
     </header>
 
     <main class="conteudo-denuncias">
 
         <section class="introducao-denuncias">
-            <span class="subtitulo-denuncias">ACOMPANHAMENTO</span>
+            <span class="subtitulo-denuncias">
+                ACOMPANHAMENTO ANÔNIMO
+            </span>
 
-            <h1>Minhas denúncias</h1>
+            <h1>Consultar relato</h1>
 
             <p>
-                Aqui você pode acompanhar suas denúncias
-                e consultar as atualizações de cada uma.
+                Informe o protocolo e o código de acesso
+                recebidos por e-mail para acompanhar
+                o andamento do seu relato.
             </p>
         </section>
 
         <section class="lista-denuncias">
+
             <div class="titulo-lista-denuncias">
-                <h2>Histórico de denúncias</h2>
-                <span id="quantidade-denuncias"></span>
+                <h2>Acessar relato</h2>
             </div>
 
-            <div id="lista-denuncias">
-                <p class="mensagem-carregamento">
-                    Carregando suas denúncias...
-                </p>
-            </div>
+            <form id="form-consultar-denuncia">
+
+                <div class="campo-formulario">
+                    <label for="protocolo">
+                        Protocolo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="protocolo"
+                        name="protocolo"
+                        placeholder="Ex.: OLY-K8M3PX7A"
+                        maxlength="20"
+                        required
+                    >
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="codigo_acesso">
+                        Código de acesso
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigo_acesso"
+                        name="codigo_acesso"
+                        placeholder="Digite seu código de acesso"
+                        maxlength="20"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    id="btn-consultar-denuncia"
+                >
+                    CONSULTAR RELATO
+                </button>
+
+            </form>
+
+            <div
+                id="resultado-consulta"
+                style="display: none;"
+            ></div>
+
         </section>
 
     </main>
@@ -52,4 +98,3 @@
 
 </body>
 </html>
-```
