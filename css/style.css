@@ -42,10 +42,11 @@ p {
     padding: 3%;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 #menu {
     margin-top: 1%;
-    width: 40vw;
+    max-width: 50vw;
     display: flex;
     justify-content: space-between;
 }
@@ -137,7 +138,7 @@ p {
     width: 80%;
     border: #320e3b 1px solid;
     border-radius: 5vh;
-    margin-top: -15vh;
+    top: 8vh;
 }
 #conteudo_sobre {
     display: flex;
@@ -1283,6 +1284,7 @@ body.pagina-conta {
 }
 
 .cabecalho-mapeamento h1 {
+    width: 100%;
     font-size: 2.6rem;
     color: #320e3b;
     margin: 0 0 8px;
@@ -1360,6 +1362,7 @@ body.pagina-conta {
 
 #form-denuncia input[type="text"],
 #form-denuncia input[type="date"],
+#form-denuncia input[type="email"],
 #form-denuncia select,
 #form-denuncia textarea {
     width: 100%;
@@ -1392,6 +1395,60 @@ body.pagina-conta {
     font-size: 12px;
     line-height: 1.5;
     color: #666;
+}
+
+/* Botão de buscar endereço */
+.btn-buscar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2878e8;
+    color: #fff;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-buscar:hover {
+    background-color: #1b5fc2;
+}
+
+.btn-buscar:focus-visible {
+    outline: 2px solid #35104f;
+    outline-offset: 3px;
+}
+
+.btn-buscar svg {
+    width: 20px;
+    height: 20px;
+}
+
+.busca-endereco {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.busca-endereco input {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 480px) {
+    .busca-endereco {
+        gap: 6px;
+    }
+
+    .btn-buscar {
+        flex-shrink: 0;
+    }
 }
 
 /* Orientação */
@@ -1951,4 +2008,300 @@ body.pagina-conta {
         flex-direction: column;
     }
 
+}
+
+
+/* =========================================================
+   AJUSTES DE ORGANIZAÇÃO, ACESSIBILIDADE E RESPONSIVIDADE
+   ========================================================= */
+
+:root {
+    --cor-texto: #320e3b;
+    --cor-roxo: #4d065f;
+    --cor-rosa: #dd1155;
+    --cor-fundo: #f7f1fc;
+    --largura-conteudo: 1200px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+    outline: 3px solid #9b59c4;
+    outline-offset: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.texto-claro { color: #fff !important; }
+.botao-destaque {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 10px 20px;
+    color: #fff;
+    background: var(--cor-rosa);
+    border-radius: 999px;
+}
+.botao-destaque:hover { background: #b80e46; }
+.botao-inicio { margin-top: 24px; }
+.botao-mapeamento { margin: 0 auto 35px; }
+.botao-contato { margin: 24px auto 0; }
+.texto-pequeno { font-size: 1rem; }
+.titulo-sobre { text-align: center; padding: 5% 0 0; }
+.imagem-logo-sobre { height: 60vh; object-fit: contain; }
+.texto-centralizado { text-align: center; }
+.texto-aplicativo { padding: 5% 5% 0; }
+.texto-intro-aplicativo { width: min(75%, 900px); margin: 0 auto; padding: 2%; }
+.texto-extra { padding: 3%; }
+.linha-apoiadores { display: flex; align-items: center; justify-content: center; width: 80%; margin: 0 auto; gap: 24px; }
+.margem-contato { margin: 8vh; }
+.imagem-dispositivo { width: min(20vw, 260px); object-fit: contain; }
+.margem-inferior { margin-bottom: 5%; }
+.centralizar-flex { display: flex; justify-content: center; }
+.titulo-formulario { margin: 0 0 24px; text-align: center; }
+.texto-formulario { text-align: center; margin: 0 0 24px; }
+.link-esqueceu-senha { padding-left: 0; margin-left: 12px; }
+.imagem-pesquisadoras { width: min(60vw, 800px); height: auto; }
+.linha-orientador { display: flex; width: 80%; align-items: center; justify-content: center; gap: 24px; margin: 0 auto; }
+.imagem-orientador { width: min(40vw, 320px); padding: 6% 6% 0; object-fit: contain; }
+.texto-orientador { width: min(45vw, 600px); }
+.linha-apoio { display: flex; align-items: center; justify-content: space-around; gap: 20px;}
+.imagem-pactec { width: min(10vw, 100px); padding-bottom: 2%; object-fit: contain; }
+
+#cabecalho {
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+#menu {
+    width: auto;
+    flex: 1 1 480px;
+    gap: clamp(12px, 2vw, 30px);
+    flex-wrap: wrap;
+}
+#acesso {
+    width: auto;
+    min-width: 110px;
+    height: auto;
+    min-height: 44px;
+    padding: 8px 14px;
+    gap: 8px;
+}
+#acesso img { width: 24px; height: 24px; object-fit: contain; }
+#principal {
+    height: auto;
+    min-height: 620px;
+    padding-bottom: 80px;
+    background-size: min(20vw, 250px) auto;
+}
+#principal h1 {
+    width: min(42%, 600px);
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
+    max-width: 100%;
+}
+#texto-inicio {
+    width: min(38%, 500px);
+    font-size: clamp(1.05rem, 1.5vw, 1.5rem);
+}
+#shape_app { pointer-events: none; }
+#sobre { margin-top: -80px; }
+#conteudo_sobre { align-items: center; gap: 24px; }
+#conteudo_sobre p { flex: 1; width: auto; }
+#conteudo_sobre img { width: min(35%, 420px); height: auto; object-fit: contain; }
+#telas { flex-wrap: wrap; gap: 24px; padding: 0 4%; }
+.btn-telas { width: min(30%, 340px); height: auto; min-height: 280px; padding: 20px; }
+.btn-telas p { width: 100%; }
+.icon-box { max-width: 120px; max-height: 120px; object-fit: contain; }
+#conteudo_dispositivo { gap: 30px; align-items: center; flex-wrap: wrap; }
+#texto_dispositivo { width: min(40%, 500px); padding: 4%; }
+footer { height: auto; min-height: 100px; padding: 20px 4%; gap: 20px; flex-wrap: wrap; }
+#olympe-conteudo { padding: 3%; }
+#olympe-conteudo p { max-width: 100%; }
+.pagina-login { width: min(1100px, 92vw); height: auto; min-height: 90vh; margin: 3vh auto; }
+.pagina-login #conteudo-login { width: 100%; align-items: center; gap: 24px; }
+.pagina-login img { max-width: 45%; object-fit: cover; }
+#formulario-login { width: min(520px, 100%); padding: 24px; }
+#formulario-login input { width: 100%; box-sizing: border-box; padding: 12px 16px; border-radius: 12px; }
+#formulario-login button { width: auto; min-width: 120px; min-height: 44px; padding: 10px 18px; border-radius: 12px; }
+#formulario-login form { width: 100%; }
+#formulario-login label { display: inline-block; margin: 8px 0; }
+#formulario-login form > br { display: none; }
+.pagina-recuperacao #conteudo-login { gap: 0; }
+.pagina-recuperacao #formulario-login { width: 55%; }
+.pagina-recuperacao #formulario-login img { max-width: 45%; }
+.pagina-denuncias, .pagina-mapeamento, .pagina-conta, .pagina-equipe { overflow-x: hidden; }
+table { max-width: 100%; }
+pre, code { overflow-wrap: anywhere; }
+
+@media (max-width: 1024px) {
+    #cabecalho { justify-content: center; }
+    #menu { justify-content: center; }
+    #principal { min-height: 570px; }
+    #layout2 { width: 38vw; }
+    #shape_app { width: 52vw; }
+    #img1_inicio { width: 38%; right: 8vw; }
+    #layout3 { width: 13vw; right: 30vw; }
+    #sobre { width: 90%; }
+    #conteudo_sobre { flex-direction: column; }
+    #conteudo_sobre p { width: 100%; }
+    #conteudo_sobre img { width: min(45%, 400px); }
+    .experimente-content { flex-wrap: wrap; }
+    .qr-card { flex: 1 1 400px; }
+    .phone-decoration { width: 180px; height: 430px; }
+    .qr-image img { width: 150px; height: 180px; }
+    .imagem-dispositivo { width: 25vw; }
+    .pagina-login { width: 95vw; }
+    .pagina-login img { max-width: 40%; }
+}
+@media (max-width: 768px) {
+    h1 { width: auto; font-size: clamp(2rem, 8vw, 3rem); }
+    h4 { font-size: clamp(1.6rem, 5vw, 2.3rem); }
+    p { font-size: 1rem; }
+    #cabecalho { padding: 20px; }
+    #cabecalho h2 { text-align: center; }
+    #menu { flex-basis: 100%; }
+    #principal {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        height: auto;
+        padding: 40px 6% 360px;
+        background-size: 25vw auto;
+        background-position: left bottom;
+    }
+    #principal h1, #texto-inicio { width: 100%; }
+    #principal h1 { max-width: 600px; }
+    #texto-inicio { max-width: 520px; margin-top: 20px; }
+    #shape_app { width: 100%; height: 340px; top: auto; bottom: 0; }
+    #layout1 { width: 55%; height: 230px; right: 28%; top: 60px; }
+    #layout2 { width: 55%; height: 350px; top: 0; }
+    #img1_inicio { width: 42%; right: 8%; top: 40px; }
+    #layout3 { width: 120px; height: 140px; top: 80px; right: 45%; }
+    #layout3 img { width: 30px; }
+    #sobre { margin-top: -30px; }
+    #conteudo_sobre img { width: 55%; }
+    #telas { flex-direction: column; align-items: center; }
+    .btn-telas { width: 100%; max-width: 440px; min-height: 0; }
+    .icon-box { margin: 10px auto 20px; }
+    .experimente { padding: 55px 5%; }
+    .experimente-content { flex-direction: column; }
+    .qr-card { width: 100%; min-height: 0; padding: 24px; }
+    .qr-info { align-items: flex-start; }
+    .qr-icon { width: 75px; height: 75px; font-size: 35px; }
+    .qr-bottom { gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .qr-image img { width: 150px; height: 150px; }
+    .phone-decoration { width: 150px; height: 360px; }
+    #conteudo_dispositivo { flex-direction: column; }
+    #texto_dispositivo { width: 100%; padding: 20px; }
+    .imagem-dispositivo { width: min(50vw, 260px); }
+    footer { text-align: center; }
+    #olympe-conteudo { width: 94%; }
+    .imagem-pesquisadoras { width: 100%; }
+    .linha-orientador { width: 100%; }
+    .imagem-orientador { width: 30%; }
+    .texto-orientador { width: auto; flex: 1; }
+    .imagem-pactec { width: 120px; }
+    .pagina-login { display: block; width: 94vw; min-height: 0; padding: 15px; }
+    .pagina-login #conteudo-login { flex-direction: column; }
+    .pagina-login #conteudo-login > img { max-width: 100%; width: 100%; height: 200px; border-radius: 20px; }
+    #formulario-login { width: 100%; padding: 10px; }
+    .pagina-recuperacao #formulario-login { width: 100%; }
+    .conteudo-denuncias { width: 92%; margin: 30px auto; }
+    .lista-denuncias { padding: 20px; }
+    .cabecalho-denuncias { padding: 18px 5%; gap: 15px; flex-wrap: wrap; }
+    .cabecalho-cartao-denuncia { flex-wrap: wrap; }
+    .folhas-mapeamento { grid-template-columns: 1fr; }
+    .folha { padding: 22px; }
+    .painel-equipe { padding: 20px; }
+}
+@media (max-width: 480px) {
+    #cabecalho { gap: 14px; }
+    #menu { gap: 10px; }
+    #menu a { font-size: .8rem; }
+    #principal { padding-bottom: 300px; }
+    #shape_app { height: 290px; }
+    #layout1 { height: 180px; }
+    #layout2 { height: 300px; }
+    #img1_inicio { width: 48%; }
+    #layout3 { width: 95px; height: 115px; right: 48%; font-size: .8rem; }
+    #sobre { border-radius: 20px; }
+    #conteudo_sobre p { padding: 5%; }
+    #conteudo_sobre img { width: 70%; }
+    .experimente-header h2 { font-size: 1.8rem; }
+    .qr-card { padding: 18px; border-radius: 20px; }
+    .qr-info { flex-direction: column; }
+    .qr-bottom { flex-direction: column; }
+    .qr-steps { border-left: 0; border-top: 2px solid #e2c9f0; padding: 12px 0 0; }
+    .phone-decoration { width: 130px; height: 300px; }
+    .linha-orientador { flex-direction: column; text-align: center; }
+    .imagem-orientador { width: 45%; }
+    .linha-apoio { flex-direction: column; }
+    .pagina-login { margin: 12px auto; padding: 10px; border-radius: 18px; }
+    #formulario-login h1 { font-size: 2rem; width: auto; }
+    #formulario-login button { width: 100%; }
+    #form-login > div { display: flex; flex-direction: column; gap: 12px; }
+    .link-esqueceu-senha { margin: 0; }
+    .conteudo-denuncias { width: 94%; }
+    .lista-denuncias { padding: 15px; }
+    .cartao-denuncia { padding: 15px; }
+    .pagina-mapeamento { padding: 16px 12px; }
+    .folha { padding: 16px; }
+    #mapa { height: 280px; }
+    .botoes-conta { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+
+/* Mensagens reutilizáveis para os formulários e scripts */
+.mensagem-mapeamento,
+.mensagem-erro,
+.mensagem-sucesso,
+.mensagem-info {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    line-height: 1.5;
+}
+.mensagem-erro { background: #fde8e8; color: #a32020; }
+.mensagem-sucesso { background: #e6f4ea; color: #216e39; }
+.mensagem-info { background: #e8f1fc; color: #24558a; }
+.texto-alerta-email { font-weight: bold; }
+.link-login-recuperacao {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
 }

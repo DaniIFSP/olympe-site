@@ -46,7 +46,8 @@ function criarInformacao(rotulo, valor) {
 // Exibe mensagens na área de resultado
 function mostrarMensagem(texto, tipo = 'erro') {
     resultadoConsulta.innerHTML = '';
-    resultadoConsulta.style.display = 'block';
+    resultadoConsulta.classList.remove('mensagem-erro', 'mensagem-info');
+    resultadoConsulta.hidden = false;
 
     const mensagem = document.createElement('p');
     mensagem.textContent = texto;
@@ -54,9 +55,9 @@ function mostrarMensagem(texto, tipo = 'erro') {
     mensagem.classList.add('mensagem-vazia');
 
     if (tipo === 'erro') {
-        mensagem.style.color = '#a32020';
+        mensagem.classList.add('mensagem-erro');
     } else {
-        mensagem.style.color = '#24558a';
+        mensagem.classList.add('mensagem-info');
     }
 
     resultadoConsulta.appendChild(mensagem);
@@ -65,7 +66,7 @@ function mostrarMensagem(texto, tipo = 'erro') {
 // Exibe os dados do relato consultado
 function mostrarDenuncia(denuncia) {
     resultadoConsulta.innerHTML = '';
-    resultadoConsulta.style.display = 'block';
+    resultadoConsulta.hidden = false;
 
     const cartao = document.createElement('article');
     cartao.classList.add('cartao-denuncia');

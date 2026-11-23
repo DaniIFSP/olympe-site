@@ -300,10 +300,8 @@ function configurarFormulario() {
         mensagem = document.createElement("div");
         mensagem.id = "mensagem-envio";
 
-        mensagem.style.marginTop = "15px";
-        mensagem.style.padding = "12px";
-        mensagem.style.borderRadius = "8px";
-        mensagem.style.display = "none";
+        mensagem.classList.add("mensagem-mapeamento");
+        mensagem.hidden = true;
 
         formulario.appendChild(mensagem);
     }
@@ -460,24 +458,12 @@ function configurarFormulario() {
 function mostrarMensagem(elemento, texto, tipo) {
 
     elemento.textContent = texto;
-    elemento.style.display = "block";
-
-    if (tipo === "erro") {
-
-        elemento.style.backgroundColor = "#fde8e8";
-        elemento.style.color = "#a32020";
-
-    } else if (tipo === "sucesso") {
-
-        elemento.style.backgroundColor = "#e6f4ea";
-        elemento.style.color = "#216e39";
-
-    } else {
-
-        elemento.style.backgroundColor = "#e8f1fc";
-        elemento.style.color = "#24558a";
-
-    }
+    elemento.hidden = false;
+    elemento.classList.remove("mensagem-erro", "mensagem-sucesso", "mensagem-info");
+    elemento.classList.add(
+        tipo === "erro" ? "mensagem-erro" :
+        tipo === "sucesso" ? "mensagem-sucesso" : "mensagem-info"
+    );
 }
 
 
@@ -488,9 +474,9 @@ function mostrarMensagem(elemento, texto, tipo) {
 function mostrarResultadoDenuncia(elemento, resultado) {
 
     elemento.innerHTML = "";
-    elemento.style.display = "block";
-    elemento.style.backgroundColor = "#e6f4ea";
-    elemento.style.color = "#216e39";
+    elemento.hidden = false;
+    elemento.classList.remove("mensagem-erro", "mensagem-info");
+    elemento.classList.add("mensagem-sucesso");
 
     const titulo = document.createElement("h3");
     titulo.textContent = "Relato registrado com sucesso!";
@@ -529,7 +515,7 @@ function mostrarResultadoDenuncia(elemento, resultado) {
         alertaEmail.textContent =
             "Atenção: não conseguimos enviar o e-mail. Copie e guarde seu protocolo e código de acesso.";
 
-        alertaEmail.style.fontWeight = "bold";
+        alertaEmail.classList.add("texto-alerta-email");
 
         elemento.appendChild(alertaEmail);
 

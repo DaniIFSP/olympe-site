@@ -11,13 +11,18 @@ const etapaSenha = document.getElementById("etapa-senha");
 
 let emailRecuperacao = "";
 
+function definirTipoMensagem(elemento, tipo) {
+    elemento.classList.remove("mensagem-erro", "mensagem-sucesso", "mensagem-info");
+    elemento.classList.add(tipo);
+}
+
 formEmail.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     emailRecuperacao = campoEmail.value.trim();
 
     mensagemEmail.textContent = "Enviando código...";
-    mensagemEmail.style.color = "#4d065f";
+    definirTipoMensagem(mensagemEmail, "mensagem-info");
 
     const botao = formEmail.querySelector("button");
     botao.disabled = true;
@@ -44,7 +49,7 @@ formEmail.addEventListener("submit", async (event) => {
         }
 
         mensagemEmail.textContent = dados.mensagem;
-        mensagemEmail.style.color = "green";
+        definirTipoMensagem(mensagemEmail, "mensagem-sucesso");
 
         // Avança para a etapa do código
         etapaEmail.hidden = true;
@@ -54,7 +59,7 @@ formEmail.addEventListener("submit", async (event) => {
         mensagemEmail.textContent =
             erro.message || "Erro ao enviar o código. Tente novamente.";
 
-        mensagemEmail.style.color = "red";
+        definirTipoMensagem(mensagemEmail, "mensagem-erro");
 
     } finally {
         botao.disabled = false;
@@ -74,7 +79,7 @@ formCodigo.addEventListener("submit", async (event) => {
     const codigo = campoCodigo.value.trim();
 
     mensagemCodigo.textContent = "Verificando código...";
-    mensagemCodigo.style.color = "#4d065f";
+    definirTipoMensagem(mensagemCodigo, "mensagem-info");
 
     const botao = formCodigo.querySelector("button[type='submit']");
     botao.disabled = true;
@@ -103,7 +108,7 @@ formCodigo.addEventListener("submit", async (event) => {
         }
 
         mensagemCodigo.textContent = dados.mensagem;
-        mensagemCodigo.style.color = "green";
+        definirTipoMensagem(mensagemCodigo, "mensagem-sucesso");
 
         // Avança para a etapa da nova senha
         etapaCodigo.hidden = true;
@@ -113,7 +118,7 @@ formCodigo.addEventListener("submit", async (event) => {
         mensagemCodigo.textContent =
             erro.message || "Erro ao verificar o código.";
 
-        mensagemCodigo.style.color = "red";
+        definirTipoMensagem(mensagemCodigo, "mensagem-erro");
 
     } finally {
         botao.disabled = false;
@@ -137,7 +142,7 @@ formSenha.addEventListener("submit", async (event) => {
     // Verifica se as senhas são iguais
     if (novaSenha !== confirmarSenha) {
         mensagemSenha.textContent = "As senhas não coincidem.";
-        mensagemSenha.style.color = "red";
+        definirTipoMensagem(mensagemSenha, "mensagem-erro");
         return;
     }
 
@@ -146,12 +151,12 @@ formSenha.addEventListener("submit", async (event) => {
         mensagemSenha.textContent =
             "A senha deve ter pelo menos 8 caracteres.";
 
-        mensagemSenha.style.color = "red";
+        definirTipoMensagem(mensagemSenha, "mensagem-erro");
         return;
     }
 
     mensagemSenha.textContent = "Alterando senha...";
-    mensagemSenha.style.color = "#4d065f";
+    definirTipoMensagem(mensagemSenha, "mensagem-info");
 
     const botao = formSenha.querySelector("button[type='submit']");
     botao.disabled = true;
@@ -181,18 +186,16 @@ formSenha.addEventListener("submit", async (event) => {
         }
 
         mensagemSenha.textContent = dados.mensagem;
-        mensagemSenha.style.color = "green";
+        definirTipoMensagem(mensagemSenha, "mensagem-sucesso");
 
         // Esconde o formulário após o sucesso
-        formSenha.style.display = "none";
+        formSenha.hidden = true;
 
         // Cria um link para voltar ao login
         const linkLogin = document.createElement("a");
         linkLogin.href = "login.html";
         linkLogin.textContent = "Ir para o login";
-        linkLogin.style.display = "block";
-        linkLogin.style.textAlign = "center";
-        linkLogin.style.marginTop = "20px";
+        linkLogin.classList.add("link-login-recuperacao");
 
         mensagemSenha.insertAdjacentElement("afterend", linkLogin);
 
@@ -200,7 +203,7 @@ formSenha.addEventListener("submit", async (event) => {
         mensagemSenha.textContent =
             erro.message || "Erro ao alterar a senha.";
 
-        mensagemSenha.style.color = "red";
+        definirTipoMensagem(mensagemSenha, "mensagem-erro");
 
     } finally {
         botao.disabled = false;

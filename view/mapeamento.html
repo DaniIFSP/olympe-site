@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,7 +109,7 @@
                     <div class="campo-formulario">
                         <label for="email">E-mail para recebimento do protocolo *</label>
 
-                        <input
+                        <input 
                             type="email"
                             id="email"
                             name="email"
@@ -135,20 +135,39 @@
                     <label for="local">
                         Endereço ou referência
                     </label>
+                    
+                    <div class="busca-endereco">
+                        <input
+                            type="text"
+                            id="local"
+                            name="local"
+                            placeholder="Endereço ou referência do local"
+                        >
 
-                    <input
-                        type="text"
-                        id="local"
-                        name="local"
-                        placeholder="Endereço ou referência do local"
-                    >
-
-                    <button
-                        type="button"
-                        id="btn-buscar-local"
-                    >
-                        BUSCAR ENDEREÇO
-                    </button>
+                        <button
+                            type="button"
+                            id="btn-buscar-local"
+                            class="btn-buscar"
+                            aria-label="Buscar endereço"
+                            title="Buscar endereço"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <line x1="16" y1="16" x2="21" y2="21"></line>
+                            </svg>
+                        </button>
+                    </div>
 
                     <p class="instrucao-mapa">
                         Pesquise um endereço ou clique no mapa para marcar
