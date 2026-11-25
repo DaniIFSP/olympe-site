@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerenciar denúncias | Olympe for Safe</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="pagina-administrativa">
+
+    <div class="layout-admin">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar-admin">
+
+            <div class="logo-admin">
+                OLYMPE<br>
+                FOR SAFE
+            </div>
+
+            <nav class="menu-admin">
+
+                <span class="titulo-menu-admin">
+                    GERENCIAMENTO
+                </span>
+
+                <a href="funcionarios.html"
+                   class="item-menu-admin">
+                    Funcionários
+                </a>
+
+                <a href="denuncias-admin.html"
+                   class="item-menu-admin ativo">
+                    Denúncias
+                </a>
+
+                <a href="instituicoes.html"
+                   class="item-menu-admin">
+                    Instituições
+                </a>
+
+                <span class="titulo-menu-admin">
+                    SITE
+                </span>
+
+                <a href="../index.html"
+                   class="item-menu-admin">
+                    Voltar para Home
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTEÚDO -->
+        <div class="conteudo-admin">
+
+            <!-- CABEÇALHO -->
+            <header class="cabecalho-admin">
+
+                <div>
+                    <h1 class="titulo-cabecalho-admin">
+                        Gerenciamento de denúncias
+                    </h1>
+
+                    <p>
+                        Acompanhe e gerencie as denúncias recebidas.
+                    </p>
+                </div>
+
+                <div id="acesso">
+                    <a href="../login.html">
+                        Entrar
+                    </a>
+                </div>
+
+            </header>
+
+            <!-- ÁREA PRINCIPAL -->
+            <main class="pagina-equipe">
+
+                <div class="painel-equipe">
+
+                    <div class="barra-equipe">
+
+                        <div>
+                            <h2>Denúncias recebidas</h2>
+
+                            <p>
+                                Consulte, acompanhe e gerencie
+                                as denúncias registradas na plataforma.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- INDICADORES -->
+                    <section class="resumo-denuncias">
+
+                        <article class="card-resumo-denuncia">
+                            <span>Total de denúncias</span>
+                            <strong id="totalDenuncias">0</strong>
+                        </article>
+
+                        <article class="card-resumo-denuncia">
+                            <span>Pendentes</span>
+                            <strong id="totalPendentes">0</strong>
+                        </article>
+
+                        <article class="card-resumo-denuncia">
+                            <span>Em análise</span>
+                            <strong id="totalEmAnalise">0</strong>
+                        </article>
+
+                        <article class="card-resumo-denuncia">
+                            <span>Resolvidas</span>
+                            <strong id="totalResolvidas">0</strong>
+                        </article>
+
+                    </section>
+
+                    <!-- PESQUISA E FILTROS -->
+                    <section class="filtros-denuncias">
+
+                        <input
+                            type="search"
+                            id="pesquisaDenuncias"
+                            placeholder="Pesquisar denúncias..."
+                        >
+
+                        <select id="filtroStatus">
+                            <option value="">Todos os status</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="em_analise">Em análise</option>
+                            <option value="resolvida">Resolvida</option>
+                        </select>
+
+                        <select id="filtroCategoria">
+                            <option value="">Todas as categorias</option>
+                        </select>
+
+                        <button
+                            type="button"
+                            id="btnAtualizarDenuncias"
+                            class="botao-equipe">
+                            Atualizar lista
+                        </button>
+
+                    </section>
+
+                    <!-- CONTADOR -->
+                    <p id="contadorDenuncias">
+                        Nenhuma denúncia carregada.
+                    </p>
+
+                    <!-- LISTA -->
+                    <section
+                        id="listaDenuncias"
+                        class="lista-denuncias-admin">
+
+                        <div class="estado-vazio-denuncias">
+                            <h3>Denúncias</h3>
+
+                            <p>
+                                As denúncias aparecerão aqui
+                                quando carregarmos os dados.
+                            </p>
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/menu-usuario.js"></script>
+    <script src="../js/denuncias-admin.js"></script>
+
+</body>
+</html>

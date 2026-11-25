@@ -2,10 +2,314 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Gerenciar Instituições</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerenciar instituições | Olympe for Safe</title>
+
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    Instituições aqui 
+
+<body class="pagina-administrativa">
+
+    <div class="layout-admin">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar-admin">
+
+            <div class="logo-admin">
+                OLYMPE<br>
+                FOR SAFE
+            </div>
+
+            <nav class="menu-admin">
+
+                <span class="titulo-menu-admin">
+                    GERENCIAMENTO
+                </span>
+
+                <a href="funcionarios.html"
+                   class="item-menu-admin">
+                    Funcionários
+                </a>
+
+                <a href="denuncias-admin.html"
+                   class="item-menu-admin">
+                    Denúncias
+                </a>
+
+                <a href="instituicoes.html"
+                   class="item-menu-admin ativo">
+                    Instituições
+                </a>
+
+                <span class="titulo-menu-admin">
+                    SITE
+                </span>
+
+                <a href="../index.html"
+                   class="item-menu-admin">
+                    Voltar para Home
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="conteudo-admin">
+
+            <!-- CABEÇALHO -->
+            <header class="cabecalho-admin">
+
+                <div>
+                    <h1>Gerenciamento de instituições</h1>
+
+                    <p>
+                        Gerencie as instituições de apoio cadastradas na plataforma.
+                    </p>
+                </div>
+
+                <div id="acesso"></div>
+
+            </header>
+
+
+            <!-- ÁREA DA PÁGINA -->
+            <section class="pagina-equipe">
+
+                <div class="painel-equipe">
+
+                    <!-- RESUMO -->
+                    <div class="resumo-instituicoes">
+
+                        <div class="card-resumo-instituicao">
+                            <span>Total de instituições</span>
+                            <strong id="totalInstituicoes">0</strong>
+                        </div>
+
+                        <div class="card-resumo-instituicao">
+                            <span>Instituições exibidas</span>
+                            <strong id="instituicoesExibidas">0</strong>
+                        </div>
+
+                        <div class="card-resumo-instituicao">
+                            <span>Com endereço cadastrado</span>
+                            <strong id="instituicoesComEndereco">0</strong>
+                        </div>
+
+                        <div class="card-resumo-instituicao">
+                            <span>Com contato cadastrado</span>
+                            <strong id="instituicoesComContato">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- BARRA DE AÇÕES -->
+                    <div class="barra-instituicoes">
+
+                        <div class="titulo-lista-instituicoes">
+
+                            <h2>Instituições cadastradas</h2>
+
+                            <p id="contadorInstituicoes">
+                                0 instituições
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            id="btnNovaInstituicao"
+                            class="botao-equipe"
+                        >
+                            + Cadastrar instituição
+                        </button>
+
+                    </div>
+
+
+                    <!-- PESQUISA E FILTROS -->
+                    <div class="filtros-instituicoes">
+
+                        <input
+                            type="search"
+                            id="pesquisaInstituicoes"
+                            placeholder="Pesquisar por nome, endereço ou contato..."
+                        >
+
+                        <select id="filtroCategoriaInstituicao">
+
+                            <option value="">
+                                Todas as categorias
+                            </option>
+
+                        </select>
+
+                        <button
+                            type="button"
+                            id="btnAtualizarInstituicoes"
+                        >
+                            Atualizar
+                        </button>
+
+                    </div>
+
+
+                    <!-- LISTAGEM -->
+                    <div
+                        id="listaInstituicoes"
+                        class="lista-instituicoes-admin"
+                    >
+
+                        <div class="estado-vazio-instituicoes">
+                            <p>
+                                As instituições cadastradas aparecerão aqui.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- MODAL DE CADASTRO DE INSTITUIÇÃO -->
+    <div id="modalInstituicao" class="modal-admin" style="display: none;">
+
+        <div class="modal-conteudo-admin">
+
+            <div class="modal-cabecalho-admin">
+
+                <h2 id="tituloModalInstituicao">
+                    Cadastrar instituição
+                </h2>
+
+                <button
+                    type="button"
+                    id="btnFecharModalInstituicao"
+                    class="btn-fechar-modal"
+                >
+                    x
+                </button>
+
+            </div>
+
+            <form id="formInstituicao">
+
+                <!-- DADOS DA INSTITUIÇÃO -->
+                <div class="formulario-instituicao">
+
+                    <label for="nomeInstituicao">
+                        Nome da instituição *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nomeInstituicao"
+                        name="nome"
+                        maxlength="90"
+                        required
+                        placeholder="Nome da instituição"
+                    >
+
+                    <label for="descricaoInstituicao">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="descricaoInstituicao"
+                        name="descricao"
+                        maxlength="300"
+                        rows="4"
+                        placeholder="Descreva os serviços oferecidos"
+                    ></textarea>
+
+                    <label for="imagemInstituicao">
+                        Imagem da instituição
+                    </label>
+
+                    <input
+                        type="file"
+                        id="imagemInstituicao"
+                        name="imagem"
+                        accept="image/jpeg,image/png,image/jpg,image/webp"
+                    >
+
+                    <small>
+                        Formatos JPG, PNG ou WEBP. Máximo de 5 MB.
+                    </small>
+
+                </div>
+
+                <hr>
+
+                
+                <!-- ENDEREÇOS DA INSTITUIÇÃO -->
+                <h3>Endereços e unidades</h3>
+
+                <p class="texto-orientacao-endereco">
+                    Cadastre todos os endereços e unidades desta instituição.
+                    Você pode adicionar quantos precisar.
+                </p>
+
+                <div id="listaEnderecosInstituicao">
+
+                    <!-- Os endereços serão adicionados pelo JavaScript -->
+
+                </div>
+
+                <button
+                    type="button"
+                    id="btnAdicionarEndereco"
+                    class="btn-adicionar-endereco"
+                >
+                    + Adicionar endereço
+                </button>
+
+
+                <!-- MENSAGEM -->
+                <div id="mensagemFormularioInstituicao"></div>
+
+                <!-- BOTÕES -->
+                <div class="modal-acoes-admin">
+
+                    <button
+                        type="button"
+                        id="btnCancelarInstituicao"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="btnSalvarInstituicao"
+                        class="btn-adicionar-equipe"
+                    >
+                        Salvar instituição
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SCRIPTS -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/menu-usuario.js"></script>
+    <script src="../js/instituicoes-admin.js"></script>
+
 </body>
 </html>

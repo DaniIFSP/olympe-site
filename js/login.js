@@ -6,52 +6,39 @@ formLogin.addEventListener('submit', async (event) => {
     const email = document.getElementById('email').value.trim();
     const senha = document.getElementById('senha').value;
 
-    const url = formLogin.action;
-
     try {
-        const resposta = await fetch( url, {
-                method: formLogin.method,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email,
-                    senha
-                })
-            });
+        const resposta = await fetch(formLogin.action, {
+            method: formLogin.method,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            })
+        });
 
         const dados = await resposta.json();
 
         if (!resposta.ok) {
-            alert(
-                dados.mensagem ||
-                dados.message ||
-                'E-mail ou senha inválidos.'
-            );
+            alert(dados.mensagem || dados.message || 'E-mail ou senha inválidos.');
             return;
         }
 
-        localStorage.setItem(
-            'olympe_token',
-            dados.token
-        );
+        // Salva o login utilizando a função centralizada
+        salvarSessao(dados.token, dados.usuario);
 
-        localStorage.setItem(
-            'olympe_usuario',
-            JSON.stringify(dados.usuario)
-        );
-
-        if (dados.usuario?.tipo === 'administrador') {
-            window.location.href = 'admin.html';
+        // Redireciona de acordo com o tipo de usuário
+        if (dados.usuario.tipo === 'administrador') {
+            window.location.href = 'funcionarios.html';
         } else {
             window.location.href = '../index.html';
         }
 
-    } catch (error) {
-        alert(
-            'Não foi possível conectar à API.' +
-            'Verifique sua conexão e tente novamente.'
-        );
+    } catch (erro) {
+        console.error('Erro real no login:', erro);
+
+        alert('Erro ao concluir login: ' + erro.message);
     }
 });

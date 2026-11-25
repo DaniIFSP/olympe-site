@@ -1,49 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
     const areaAcesso = document.getElementById('acesso');
+
     if (!areaAcesso) return;
 
-    const token = localStorage.getItem('olympe_token');
-    let usuario = null;
-    try {
-        usuario = JSON.parse(localStorage.getItem('olympe_usuario') || 'null');
-    } catch (error) {
-        localStorage.removeItem('olympe_usuario');
-    }
+    const token = obterToken();
+    const usuario = obterUsuario();
 
-    if (!token || !usuario || usuario.tipo === 'administrador') return;
+    if (!token || !usuario) return;
 
-    const primeiroNome = (usuario.nome || 'Usuária').trim().split(/\s+/)[0];
-    areaAcesso.classList.add('acesso-logado');
-    areaAcesso.innerHTML = `
-        <details class="menu-conta">
-            <summary aria-label="Abrir menu da conta">${escapeHtml(primeiroNome)}</summary>
-            <div class="opcoes-conta">
-                <a href="view/minha-conta.html">Minha conta</a>
-                <a href="view/mapeamento.html">Ajude no mapeamento</a>
-                <a href="view/minhas-denuncias.html">Minhas denúncias</a>
-                <a href="view/encomenda.html">Encomendar dispositivo</a>
-                <button type="button" id="btn-logout-menu">Sair da conta</button>
-            </div>
-        </details>
-        <img src="img/sol_detalhe.png" alt="detalhe">
+    const administrador = usuario.tipo === 'administrador';
+    const primeiroNome = (usuario.nome || 'Usuário').trim().split(/\s+/)[0];
+
+    // Identifica se estamos na pasta view
+    const estaNaView = window.location.pathname.includes('/view/');
+
+    const caminhoView = estaNaView ? '' : 'view/';
+    const caminhoImagem = estaNaView ? '../img/' : 'img/';
+
+    // Monta os links de acordo com o tipo de usuário
+    let links = `
+        <a href="${caminhoView}minha-conta.html">Minha conta</a>
+        <a href="${caminhoView}mapeamento.html">Ajude no mapeamento</a>
+        <a href="${caminhoView}minhas-denuncias.html">Minhas denúncias</a>
+        <a href="${caminhoView}encomenda.html">Encomendar dispositivo</a>
     `;
 
-    document.getElementById('btn-logout-menu')?.addEventListener('click', () => {
-        const tokenAtual = localStorage.getItem('olympe_token');
-        localStorage.removeItem('olympe_token');
-        localStorage.removeItem('olympe_usuario');
-        if (tokenAtual) {
-            fetch('https://olympe-api.onrender.com/api/logout', {
-                method: 'POST',
-                headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${tokenAtual}` }
-            }).catch(() => {});
-        }
-        window.location.href = 'index.html';
+    if (administrador) {
+        links = `
+            <a href="${caminhoView}minha-conta.html">Minha conta</a>
+            <a href="${caminhoView}funcionarios.html">Painel administrativo</a>
+        `;
+    }
+
+    areaAcesso.classList.add('acesso-logado');
+
+    areaAcesso.innerHTML = `
+        <details class="menu-conta">
+            <summary aria-label="Abrir menu da conta">
+                ${escapeHtml(primeiroNome)}
+            </summary>
+
+            <div class="opcoes-conta">
+                ${links}
+                <button type="button" id="btn-logout-menu">
+                    Sair da conta
+                </button>
+            </div>
+        </details>
+
+        <img src="${caminhoImagem}sol_detalhe.png" alt="" aria-hidden="true">
+    `;
+
+    // Botão de sair
+    const botaoLogout = document.getElementById('btn-logout-menu');
+
+    botaoLogout.addEventListener('click', () => {
+        logout();
     });
 });
 
+
+// Protege o nome do usuário contra inserção de HTML
 function escapeHtml(valor) {
     return String(valor).replace(/[&<>"']/g, caractere => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;'
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
     }[caractere]));
 }
