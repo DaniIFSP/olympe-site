@@ -189,18 +189,90 @@
             </div>
     </section>        
 
+    
     <section id="dispositivo">
-            <h4 class="margem-contato">Dispositivo inteligente</h4>
-            <div id="conteudo_dispositivo">
-            <img src="img/dispositivo.png" class="imagem-dispositivo" alt="">
+        <h4 class="margem-contato">Dispositivo inteligente</h4>
+
+        <div id="conteudo_dispositivo">
+            <img src="img/dispositivo.png" class="imagem-dispositivo" alt="Chaveiro Olympe">
+
             <div id="texto_dispositivo" class="margem-inferior">
-            <p>O <strong>chaveiro Olympe</strong> é o nosso botão 
-            de emergência escondido, com apenas um clique você se 
-            comunica diretamente com o 180 e sua ocorrência é registrada.</p>
-            <a href="view/encomenda.html" class="botao-destaque botao-contato">Encomende já o seu</a>
+                <p>
+                    O <strong>chaveiro Olympe</strong> é o nosso botão
+                    de emergência escondido, com apenas um clique você se
+                    comunica diretamente com o 180 e sua ocorrência é registrada.
+                </p>
+
+                <a href="#formulario-encomenda" class="botao-destaque botao-contato">
+                    Encomende já o seu
+                </a>
             </div>
-            </div>
+        </div>
+
+        <div id="formulario-encomenda">
+            <h3>Tenho interesse no dispositivo Olympe</h3>
+
+            <p>
+                Preencha o formulário abaixo para manifestar seu interesse
+                em adquirir o dispositivo.
+            </p>
+
+            <p>
+                <strong>Importante:</strong> O preenchimento deste formulário
+                não garante a reserva ou o envio do dispositivo. A produção e
+                o envio dependerão da demanda, da disponibilidade dos componentes
+                e dos recursos necessários. O valor estimado é de R$ 20 a R$ 30
+                por unidade, podendo variar conforme os custos de produção e a
+                existência de apoio financeiro externo.
+            </p>
+
+            <form id="formEncomendaDispositivo">
+                <div>
+                    <label for="nomeEncomenda">Nome completo:</label>
+                    <input type="text" id="nomeEncomenda" name="nome" required>
+                </div>
+
+                <div>
+                    <label for="emailEncomenda">E-mail:</label>
+                    <input type="email" id="emailEncomenda" name="email" required>
+                </div>
+
+                <div>
+                    <label for="cidadeEncomenda">Cidade:</label>
+                    <input type="text" id="cidadeEncomenda" name="cidade" required>
+                </div>
+
+                <div>
+                    <label for="estadoEncomenda">Estado (UF):</label>
+                    <input type="text" id="estadoEncomenda" name="estado" maxlength="2" required>
+                </div>
+
+                <div>
+                    <label for="quantidadeEncomenda">Quantidade desejada:</label>
+                    <input type="number" id="quantidadeEncomenda" name="quantidade" min="1" value="1" required>
+                </div>
+
+                <div>
+                    <label for="observacoesEncomenda">Observações (opcional):</label>
+                    <textarea id="observacoesEncomenda" name="observacoes"></textarea>
+                </div>
+
+                <div>
+                    <label>
+                        <input type="checkbox" id="autorizacaoContato" name="autorizacao" value="1" required>
+                        Autorizo o contato por e-mail para receber novidades sobre o dispositivo.
+                    </label>
+                </div>
+
+                <button type="submit" class="botao-destaque">
+                    Enviar manifestação de interesse
+                </button>
+
+                <p id="mensagemEncomenda" role="status"></p>
+            </form>
+        </div>
     </section>
+
 
     </main>
     
@@ -214,5 +286,6 @@
     </footer>
     <script src="js/auth.js"></script>
     <script src="js/menu-usuario.js"></script>
+    <script src="js/encomenda-dispositivo.js"></script>
 </body>
 </html>

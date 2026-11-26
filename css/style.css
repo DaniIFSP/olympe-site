@@ -3451,3 +3451,91 @@ pre, code { overflow-wrap: anywhere; }
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+
+
+/* ===== FORMULÁRIO DE INTERESSE DO DISPOSITIVO ===== */
+
+#formulario-encomenda {
+    display: none;
+    margin: 40px auto;
+    padding: 30px;
+    max-width: 1250px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+#formulario-encomenda:target {
+    display: block;
+}
+
+#formulario-encomenda h3 {
+    color: #6c3bb8;
+    margin-bottom: 15px;
+}
+
+#formulario-encomenda p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#formEncomendaDispositivo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+#formEncomendaDispositivo > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#formEncomendaDispositivo label {
+    font-weight: 600;
+}
+
+#formEncomendaDispositivo input:not([type="checkbox"]),
+#formEncomendaDispositivo textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#formEncomendaDispositivo textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#formEncomendaDispositivo input:focus,
+#formEncomendaDispositivo textarea:focus {
+    outline: none;
+    border-color: #6c3bb8;
+    box-shadow: 0 0 0 2px rgba(108, 59, 184, 0.15);
+}
+
+#formEncomendaDispositivo > div:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#autorizacaoContato {
+    margin-top: 4px;
+}
+
+#formEncomendaDispositivo button {
+    cursor: pointer;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+}
+
+#mensagemEncomenda {
+    margin-top: 10px;
+}
